@@ -17,6 +17,8 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-# Firebase credentials
-storage/*.json
+echo "storage/*.json" >> .gitignore
+git add .gitignore
+git commit -m "Ajout du fichier .json dans le .gitignore"
+
 

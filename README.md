@@ -1,3 +1,97 @@
+📚 EDT-API Laravel + Firebase (Firestore)
+
+API Laravel pour la gestion d’un emploi du temps, utilisant Google Firestore comme base de données principale.
+
+⚙️ Pré-requis
+
+PHP >= 8.1
+
+Composer
+
+Laravel >= 10
+
+Extension PHP grpc installée (php -m | grep grpc)
+
+Google Firebase + Firestore activé
+
+Clé d’authentification (Service Account JSON)
+
+🚀 Installation du projet
+
+Cloner le projet :
+
+git clone https://github.com/VyDonald/EDT-API-Laravel.git
+cd EDT-API-Laravel
+
+Installer les dépendances PHP :
+
+composer install
+
+Créer un fichier .env :
+
+Crée un fichier .env manuellement ou copie le modèle :
+
+cp .env.example .env
+
+📌 Tu dois configurer manuellement les variables Firebase :
+
+FIREBASE_PROJECT_ID=ton-projet-id
+GOOGLE_APPLICATION_CREDENTIALS=/chemin/vers/ton/fichier-service-account.json
+
+Générer la clé d’application Laravel :
+
+php artisan key:generate
+
+🔐 Configuration Firebase
+
+Créer un compte de service sur Firebase :
+
+Console Firebase > Paramètres du projet > Comptes de service
+
+Génère une nouvelle clé JSON
+
+Renomme-la (ex: firebase-service-account.json) et place-la dans un dossier non versionné (ex: storage/)
+
+Ajouter le chemin dans ton fichier .env :
+
+GOOGLE_APPLICATION_CREDENTIALS=${ABSOLUTE_PATH}/firebase-service-account.json
+
+⚠️ Important : Ne pas versionner ce fichier ! Il contient des secrets. Ajoute-le à .gitignore :
+
+storage/firebase-service-account.json
+
+🌱 Seeder Firestore
+
+Les seeders Firestore sont dans app/Console/Commands et se lancent via :
+
+php artisan firestore:seed
+
+Si tu n'as pas les fichiers, contacte le lead du projet.
+
+📬 Endpoints disponibles
+
+Les routes principales de l’API sont listées dans routes/api.php.Pour les tester, utilise Postman ou Hoppscotch.
+
+📂 Arborescence utile
+
+app/
+├—— Console/Commands/        -> Seeders Firestore
+├—— Http/
+│   └—— Controllers/         -> Contrôleurs d’API
+├—— Services/                -> Intégration Firebase (FirestoreService.php)
+config/
+├—— firestore.php            -> Config custom pour Firestore
+routes/
+└—— api.php                  -> Définition des routes
+
+💡 Astuces
+
+Si ton push est bloqué sur GitHub à cause d’un fichier .json, regarde ce lien :https://docs.github.com/fr/code-security/secret-scanning/working-with-secret-scanning-and-push-protection
+
+Pour corriger un push bloqué, tu peux utiliser :
+
+git filter-repo --path chemin/vers/le/secret.json --invert-paths
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
